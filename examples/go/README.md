@@ -1,4 +1,4 @@
-# plaid-link Go sample app
+# plaid-link with Signals
 
 This is a simple web app that uses [Negroni][1] and [plaid-go][2] to demonstrate a client and server-side integration of [Plaid Link][3].
 
@@ -54,3 +54,25 @@ And that's it!
 [3]: https://github.com/plaid/link
 [4]: https://plaid.com/account/
 [5]: https://plaid.com/docs#sandbox
+___
+
+# Signals: Song/Transaction Comparisons
+
+## Rundown
+
+The purpose of this code is to determine a song that most closely matches your spending habits. By opening the app and logging in to the bank, the app will pull the amounts for your past financial transactions. These transactions will be used to form a signal represented as a series of coordinates on the Cartesian plane. Samples will be taken from a number of songs stored locally and the amplitudes of the songs will be sampled and also represented as a series of coordinates. The Fréchet distance algorithm is then used to compare your transactions to a set of song samples to determine which song most closely matches your transactions! A web page then gives you the option to play your song and shows you a graph of your transaction and song signals.
+
+## Getting Started
+
+Just run the server as indicated above and log into your bank account (or use the sample one)! :)
+
+## Using your own music
+
+You need to use your own music to play a song from the web interface. Else, the web interface will just give you a song and the graph for the signal and will be unable to play the actual song.
+
+Make sure youre music is in `.wav` format and move your songs to the `./public/songs` (create it if it doesn't exist) directory. After doing this, update the `songsDirectory` variable in `./server.go` to reflect your full path to the songs folder, i.e. `"/Users/edmundloo/Work/src/github.com/plaid/link/examples/go/public/songs"`. After doing this, uncomment the `storeAllSignals` function in `./server.go` and hit the `/transactions` endpoint by trying to view your song comparison results. Make sure to comment out `storeAllSignals` afterwards as you only need to run this to update your song database.
+
+## Details and Difficulties
+- Songs must be converted to `.wav` if not already in `.wav`
+- Due to algorithm runtime, only 50 transactions and samples are used for the comparison by default
+- Your latest 50 transaction and a sample per second in the first 50 seconds of the song is the default setting
