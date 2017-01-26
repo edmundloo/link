@@ -27,12 +27,12 @@
 </head>
 
 <body class="transactions">
-  <div class="container">
+  <div id="loader"></div>
+  <div id="main" class="container" style="display:none;">
     <div class="logo">Signals</div>
-    <h2 id='title'>Your Song Match</h2>
+    <h2 id='title' style="text-align: center;">Your Song Match</h2>
     <div id='transaction-items'>
     </div>
-    
   </div>
 </body>
   <script>
@@ -79,6 +79,8 @@
 				};
 				var data = [transactionPoints, songPoints];
 				Plotly.newPlot('songPlot', data);
+
+        showPage();
       } else {
         // Show a simple error message - the request failed.
         showError();
@@ -96,6 +98,11 @@
     $('#transaction-items').hide();
     $('.transaction-item').first().hide();
     $('#title').text('We had trouble pulling your transactions.');
+  }
+
+  function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("main").style.display = "block";
   }
   </script>
 </html>
