@@ -76,3 +76,6 @@ Make sure youre music is in `.wav` format and move your songs to the `./public/s
 - Songs must be converted to `.wav` if not already in `.wav`
 - Due to algorithm runtime, only 50 transactions and samples are used for the comparison by default
 - Your latest 50 transaction and a sample per second in the first 50 seconds of the song is the default setting
+
+## Screenshot
+<img width="1059" alt="screen shot 2017-01-26 at 14 31 11" src="https://cloud.githubusercontent.com/assets/5935208/22353769/f0422776-e3d6-11e6-8263-5444d98bf6c6.png">
